@@ -24,8 +24,9 @@ If any of this fails at some point, let us know!
 
 ## Docker image ##
 
-Coming soon!
-
+```
+sudo docker run -t -i iaroslavai/scikit-optimize-benchmarks /bin/bash
+```
 
 ## Run on a single machine ##
 

@@ -10,8 +10,8 @@ apt-get install python python3 python-pip python3-pip git -y
 apt-get install python-tk python3-tk -y # necessary for Docker image
 
 # install necessary python packages
-sudo bash skopt_py2.sh
-sudo bash skopt_py3.sh
+bash skopt_py2.sh
+bash skopt_py3.sh
 
 # install dask for distributed computing
 # also installs many necessary dependencies

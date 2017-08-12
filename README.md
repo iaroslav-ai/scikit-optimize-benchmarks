@@ -12,6 +12,21 @@ Repository also contains a set of benchmarks intended for testing black
 box optimization algorithms. Some are inspired by practical problems,
 and many originate from literature and are based on [sigopt's evalset](https://github.com/sigopt/evalset) .
 
+## Installation on Ubuntu - like systems ##
+
+* To benchmark `scikit-optimize` only: `sudo bash skopt_py2.sh` or
+`sudo bash skopt_py3.sh` depending whether you use python 2 or 3.
+
+* Run `sudo bash full_install.sh` .
+
+If any of this fails at some point, let us know!
+
+
+## Docker image ##
+
+Coming soon!
+
+
 ## Run on a single machine ##
 
 ```python
@@ -34,15 +49,6 @@ p.to_csv('data.csv')
 plot_results(r)
 ```
 
-## Docker image ##
-
-Coming soon!
-
-## Installation on Ubuntu - like systems ##
-
-* To benchmark `scikit-optimize` only: `pip install -r requirements.txt`
-
-* Run `sudo bash ubuntu_install.sh` . If this fails at some point, let us know!
 
 
 ## Results

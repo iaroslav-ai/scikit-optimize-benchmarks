@@ -10,8 +10,8 @@ apt-get install python python3 python-pip python3-pip git -y
 apt-get install python-tk python3-tk -y # necessary for Docker image
 
 # install necessary python packages
-pip install -r requirements.txt
-pip3 install -r requirements.txt
+sudo bash skopt_py2.sh
+sudo bash skopt_py3.sh
 
 # install dask for distributed computing
 # also installs many necessary dependencies
@@ -43,11 +43,8 @@ pip install -e .
 cd $the_script_path
 
 # install SMAC3
-apt-get install swig
+apt-get install swig -y
 pip3 install https://github.com/automl/SMAC3/archive/master.zip
-
-
-
 
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo "Please run 'sudo service mongod start' in terminal before using 'spearmint_minimize'"

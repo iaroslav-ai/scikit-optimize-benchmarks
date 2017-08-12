@@ -1,0 +1,19 @@
+*.py[co]
+*~
+.ipynb_checkpoints/
+# created by installing scikit-learn from git
+src/*
+build/
+dist/
+*.egg-info/
+.idea/
+.cache/
+
+# mac OS users
+.DS_Store
+
+# vim users
+.*.swp
+
+# pycache 
+__pycache__/

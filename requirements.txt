@@ -1,0 +1,5 @@
+https://github.com/scikit-optimize/scikit-optimize/archive/master.zip
+matplotlib
+bootstrapped
+joblib
+https://github.com/sigopt/evalset/archive/master.zip

@@ -1,5 +1,6 @@
-https://github.com/scikit-optimize/scikit-optimize/archive/master.zip
+numpy
 matplotlib
 bootstrapped
 joblib
+https://github.com/scikit-optimize/scikit-optimize/archive/master.zip
 https://github.com/sigopt/evalset/archive/master.zip

@@ -13,6 +13,11 @@ apt-get install python-tk python3-tk -y # necessary for Docker image
 pip install -r requirements.txt
 pip3 install -r requirements.txt
 
+# install dask for distributed computing
+# also installs many necessary dependencies
+pip install dask[complete]
+pip3 install dask[complete]
+
 # install hyperopt
 pip install hyperopt
 pip3 install hyperopt
@@ -23,9 +28,6 @@ pip3 install Gpy
 pip install GpyOpt
 pip3 install GpyOpt
 
-# install dask for distributed computing
-pip install dask[complete]
-pip3 install dask[complete]
 
 # install mongodb (necessary for spearmint)
 pip install pymongo

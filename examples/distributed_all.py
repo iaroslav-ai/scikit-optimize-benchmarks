@@ -2,11 +2,12 @@
 Example how to run evaluation on multiple machines with dask
 """
 
-import distributed.joblib
+import pickle as pc
+
 from joblib import parallel_backend
 from skopt import gp_minimize, dummy_minimize, forest_minimize
-import pickle as pc
-from evaluation import parallel_evaluate, plot_results, calculate_metrics
+
+from bbob.evaluation import parallel_evaluate, plot_results, calculate_metrics
 
 run_with_dask = False
 dask_scheduler = "54.237.243.247:8786"  # example scheduler address

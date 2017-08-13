@@ -1,7 +1,8 @@
-from types import ModuleType
-from joblib import Parallel, delayed
 from itertools import groupby
+from types import ModuleType
+
 import numpy as np
+from joblib import Parallel, delayed
 
 
 def single_rep_evaluate(solver, problem, n_calls=64, seed=0):
@@ -18,7 +19,7 @@ def single_rep_evaluate(solver, problem, n_calls=64, seed=0):
 
 
 def parallel_evaluate(solvers, task_subset=None, n_reps=32,
-                      joblib_kwargs=None, eval_kwargs=None):
+                      joblib_kwargs=None, eval_function=single_rep_evaluate, eval_kwargs=None):
 
     if joblib_kwargs is None:
         joblib_kwargs = {}
@@ -26,7 +27,7 @@ def parallel_evaluate(solvers, task_subset=None, n_reps=32,
         eval_kwargs = {}
 
     if task_subset is None:
-        from tracks import all_tracks
+        from bbob.tracks import all_tracks
         task_subset = all_tracks
 
     if isinstance(solvers, list):
@@ -55,7 +56,7 @@ def parallel_evaluate(solvers, task_subset=None, n_reps=32,
         for _ in range(n_reps)]
 
     results = Parallel(**joblib_kwargs)(
-        delayed(single_rep_evaluate)(s, p, seed=i, **eval_kwargs)
+        delayed(eval_function)(s, p, seed=i, **eval_kwargs)
         for i, (p, s) in enumerate(all_tasks)
     )
 

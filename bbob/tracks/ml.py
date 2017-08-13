@@ -1,19 +1,17 @@
-import numpy as np
+import os
 
-from sklearn.model_selection import cross_val_score
+import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.datasets import load_diabetes
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.datasets import load_diabetes
-
-from skopt.space import Real, Integer, Categorical
+from skopt.space import Real, Integer
 from skopt.utils import dimensions_aslist, point_asdict, point_aslist
 
-from .misc.tinynet import ffnn_predict
 from .misc import simulators
-
-import os
+from .misc.tinynet import ffnn_predict
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
 class ColumnSubset(BaseEstimator, TransformerMixin):

@@ -28,7 +28,6 @@ pip3 install Gpy
 pip install GpyOpt
 pip3 install GpyOpt
 
-
 # install mongodb (necessary for spearmint)
 pip install pymongo
 bash mongod_install.sh
@@ -46,6 +45,5 @@ cd $the_script_path
 apt-get install swig -y
 pip3 install https://github.com/automl/SMAC3/archive/master.zip
 
-echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo "Please run 'sudo service mongod start' in terminal before using 'spearmint_minimize'"
-echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+

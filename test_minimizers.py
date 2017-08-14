@@ -1,8 +1,8 @@
 import sys
 
 from skopt import gp_minimize
-from wrappers.gpyopt_minimize import gpyopt_minimize
-from wrappers.hyperopt_minimize import hyperopt_minimize
+from bbob.wrappers.gpyopt_minimize import gpyopt_minimize
+from bbob.wrappers.hyperopt_minimize import hyperopt_minimize
 
 if sys.version[0] == '3':
     from bbob.wrappers import smac_minimize

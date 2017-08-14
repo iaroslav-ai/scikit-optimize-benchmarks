@@ -41,7 +41,12 @@ cd $the_script_path
 
 # install SMAC3
 apt-get install swig -y
-pip3 install https://github.com/automl/SMAC3/archive/master.zip
+cd
+git clone https://github.com/automl/SMAC3.git
+cd SMAC3
+cat requirements.txt | xargs -n 1 -L 1 pip install
+python setup.py install
+cd $the_script_path
 
 echo "Please run 'sudo service mongod start' in terminal before using 'spearmint_minimize'"
 

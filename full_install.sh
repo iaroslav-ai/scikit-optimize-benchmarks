@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # python 2 and 3 are both necessary.
 # Spearmint only supports python 2.
 # SMAC3 only supports python 3.

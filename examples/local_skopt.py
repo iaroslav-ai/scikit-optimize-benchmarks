@@ -3,9 +3,10 @@ Example of running the benchmarks locally on skopt
 only
 """
 
+from bbob.evaluation import parallel_evaluate, plot_results, calculate_metrics
 from skopt import dummy_minimize, forest_minimize
-from evaluation import parallel_evaluate, plot_results, calculate_metrics
-from tracks.ampgo import Hartmann3_3_ri, Ackley_3_1_r
+
+from bbob.tracks.ampgo import Hartmann3_3_ri, Ackley_3_1_r
 
 r = parallel_evaluate(
     solvers=[forest_minimize, dummy_minimize, ],

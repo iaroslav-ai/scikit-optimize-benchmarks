@@ -25,9 +25,10 @@ from pprint import pprint
 import os
 import time
 from tqdm import tqdm
+import joblib
 
 target_capacity = 32
-instance_type = 'c3.xlarge'
+instance_type = 'm3.medium'
 aws_access_key = 'Location of your key'
 aws_key_name = 'example-name'
 # Ubuntu 16 based AMI, with all dependencies and dask[complete]
@@ -36,6 +37,7 @@ ami_image_id = 'ami-d6c49fad'
 recommended_worker_num = {
     'c3.large': 2,
     'c3.xlarge': 4,
+    'm3.medium': 1,
 }
 
 workers_per_instance = recommended_worker_num[instance_type]

@@ -8,9 +8,26 @@ The interfaces are available to following software:
 * [gpyopt](https://github.com/SheffieldML/GPyOpt)
 * [hyperopt](https://github.com/hyperopt/hyperopt)
 
-Repository also contains a set of benchmarks intended for testing black
+Repository contains a set of benchmarks intended for testing black
 box optimization algorithms. Some are inspired by practical problems,
 and many originate from literature and are based on [sigopt's evalset](https://github.com/sigopt/evalset) .
+
+
+## Aggregated results
+
+|Method|Average rank (less is better)|
+|------|------------|
+dummy_minimize | 3.931
+forest_minimize | 2.172
+gbrt_minimize | 1.966
+gp_minimize | 1.138
+gpyopt_minimize | 0.897
+hyperopt_minimize | 2.845
+
+Important note: these results need not generalize to the problems which
+are largely different from problems in the evaluation set.
+
+See below how these results are calculated.
 
 ## Installation on Ubuntu - like systems ##
 
@@ -82,20 +99,6 @@ to reduce the size of such intervals.
 Confidence intervals and large number of iterations is used because
 of empirical observation that results with small number of iterations
 often cannot be reproduced and hence are unreliable.
-
-## Aggregated results
-
-|Method|Average rank (less is better)|
-|------|------------|
-dummy_minimize | 3.931
-forest_minimize | 2.172
-gbrt_minimize | 1.966
-gp_minimize | 1.138
-gpyopt_minimize | 0.897
-hyperopt_minimize | 2.845
-
-Important note: these results need not generalize to the problems which
-are largely different from problems in the evaluation set.
 
 ## Contributions
 

@@ -24,6 +24,9 @@ If any of this fails at some point, let us know!
 
 ## Docker image ##
 
+Has all of necessary software installed. Requires you to run mongo in
+a screen in order to run spearmint.
+
 ```
 sudo docker run -t -i iaroslavai/scikit-optimize-benchmarks /bin/bash
 ```
@@ -52,23 +55,49 @@ plot_results(r)
 
 
 
-## Results
+## How performance is calculated
 
-To reproduce, run `python run_all_tests.py`. Every number shown below is
+Results can be found in `results_history` folder, in `.csv` file
+ with the latest date. To reproduce, run `python distributed_run.py`
+ with `n_reps >= 64`.
 
+Every entry in such `csv` file corresponds to performance of some
+algorithm on some problem. Such entries consist of 3 values:
 lower confidence bound < mean < upper confidence bound,
-
 where 95% confidence interval is computed using bootstrapping method.
-Results below are for 128 runs with 64 calls budget for every problem.
 
-|Method|Branin|Hart6|Select2Features|Train4LayerNN|
-|------|------|-----|---------------|-------------|
-forest_minimize|0.856<1.15<1.378|-2.945<-2.898<-2.855|-0.398<-0.39<-0.382|-1.005<-0.998<-0.99
-gp_minimize|0.398<0.398<0.398|-3.264<-3.219<-3.183|-0.388<-0.379<-0.37|-1.093<-1.087<-1.082
-dummy_minimize|1.126<1.295<1.451|-1.854<-1.779<-1.702|-0.369<-0.362<-0.355|-0.789<-0.773<-0.757
+On every test optimization problem algorithms are ranked based on their
+relative performance. A rank of some algorithm is a number of other
+algorithms that significantly (based on derived interval) improve over
+the algorithm. Consider example results below:
 
+| A | B | C | D |
+|---|---|---|---|
+3<4<5|0<1<2|-1<0<1|-4<-2<-1|
 
-### Contributions ###
+Rank A = 3, B = 1, C = 1, D = 0. The rank for B and C is the same, as their
+confidence intervals overlap. A large number of repetitions is used
+to reduce the size of such intervals.
+
+Confidence intervals and large number of iterations is used because
+of empirical observation that results with small number of iterations
+often cannot be reproduced and hence are unreliable.
+
+## Aggregated results
+
+|Method|Average rank (less is better)|
+|------|------------|
+dummy_minimize | 3.931
+forest_minimize | 2.172
+gbrt_minimize | 1.966
+gp_minimize | 1.138
+gpyopt_minimize | 0.897
+hyperopt_minimize | 2.845
+
+Important note: these results need not generalize to the problems which
+are largely different from problems in the evaluation set.
+
+## Contributions
 
 All contributions are welcome! :)
 

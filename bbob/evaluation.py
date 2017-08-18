@@ -1,9 +1,12 @@
 from itertools import groupby
 from types import ModuleType
+import os
+import pickle as pc
 
 import numpy as np
 from joblib import Parallel, delayed
-
+import pandas as ps
+from tqdm import tqdm
 
 def single_rep_evaluate(solver, problem, n_calls=64, seed=0):
     np.random.seed(seed)
@@ -99,13 +102,13 @@ def calculate_metrics(results):
 
     stat_dict = {}
 
-    for s in results:
+    for s in tqdm(results):
         for t in results[s]:
             for p in results[s][t]:
                 if not p in stat_dict:
                     stat_dict[p] = {}
                 opts = np.array([result.fun for result in results[s][t][p]])
-                stats = bs.bootstrap(opts, stat_func=bs_stats.mean, num_iterations=1000000)
+                stats = bs.bootstrap(opts, stat_func=bs_stats.mean, num_iterations=1000000, iteration_batch_size=100000)
                 l, m, u = stats.lower_bound, stats.value, stats.upper_bound
                 stat_dict[p][s] = "%s<%s<%s" % tuple(round(v, 3) for v in (l, m, u))
 
@@ -114,3 +117,75 @@ def calculate_metrics(results):
     df = DataFrame(stat_dict, index=list(results.keys()))
     df = df.T
     return df
+
+
+def get_average_ranking(results):
+    """
+    Calculates the average rankings of algorithms over
+    instances of benchmarks.
+    """
+    if isinstance(results, str):
+        df = ps.read_csv(results)
+    elif isinstance(results, ps.DataFrame):
+        df = results
+    else:
+        df = ps.read_csv(results)
+
+    methods = df.columns[1:]
+    df = df.as_matrix()
+
+    new_results = []
+
+    for row in df:
+        problem = row[0]
+        results = row[1:]
+
+        lmus = [[float(v) for v in s.split('<')] for s in results]
+        ranks = []
+
+        for l, m, u in lmus:
+            ranks.append(sum([uu < l for ll, mm, uu in lmus])*1.0)
+
+        new_results.append(ranks)
+
+    mean_ranks = np.mean(new_results, axis=0)
+
+    ranks = dict(zip(methods, mean_ranks))
+
+    return ranks
+
+
+def combine_results(results_set):
+    """
+    Combines multiple results objective into one.
+    """
+
+    # read results from folder if necessary
+    if isinstance(results_set, str):
+        result_list = []
+        for f_name in tqdm(os.listdir(results_set)):
+            result = pc.load(open(os.path.join(results_set, f_name), 'rb'))
+            result_list.append(result)
+
+        results_set = result_list
+
+    base = results_set[0]
+
+    for results in results_set[1:]:
+
+        for s in results:
+            for t in results[s]:
+                for p in results[s][t]:
+
+                    if s not in base:
+                        base[s] = {}
+
+                    if t not in base[s]:
+                        base[s][t] = {}
+
+                    if p not in base[s][t]:
+                        base[s][t][p] = []
+
+                    base[s][t][p] += results[s][t][p]
+
+    return base

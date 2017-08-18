@@ -2,6 +2,7 @@
 Example how to run evaluation on multiple machines with dask
 """
 
+import distributed.joblib
 import pickle as pc
 
 from joblib import parallel_backend
@@ -10,7 +11,7 @@ from skopt import gp_minimize, dummy_minimize, forest_minimize
 from bbob.evaluation import parallel_evaluate, plot_results, calculate_metrics
 
 run_with_dask = True
-dask_scheduler = "54.237.243.247:8786"  # example scheduler address
+dask_scheduler = "34.213.78.238:8786"  # example scheduler address
 
 def run():
     r = parallel_evaluate(

@@ -25,20 +25,27 @@ from pprint import pprint
 import os
 import time
 from tqdm import tqdm
+import joblib
+import json
+
 
 target_capacity = 32
-instance_type = 'c3.xlarge'
-aws_access_key = 'Location of your key'
-aws_key_name = 'example-name'
+instance_type = 'm3.medium'
+aws_access_key = ''
+aws_key_name = ''
 # Ubuntu 16 based AMI, with all dependencies and dask[complete]
-ami_image_id = 'ami-d6c49fad'
+ami_image_id = 'ami-639d701b'
+security_group = 'sg-3e004744'
+iamfleetrole = 'arn:aws:iam::495447293919:role/aws-ec2-spot-fleet-tagging-role'
 
 recommended_worker_num = {
     'c3.large': 2,
+    'c4.large': 2,
     'c3.xlarge': 4,
+    'm3.medium': 1,
 }
 
-workers_per_instance = recommended_worker_num[instance_type]
+workers_per_instance = 1 #recommended_worker_num[instance_type]
 
 client = boto3.client('ec2')
 ec2 = boto3.resource('ec2')
@@ -51,12 +58,12 @@ def start_cluster_instances():
     cluster = client.request_spot_fleet(
         SpotFleetRequestConfig={
             'AllocationStrategy': 'lowestPrice',
-            'IamFleetRole': 'arn:aws:iam::761799855167:role/aws-ec2-spot-fleet-role',
+            'IamFleetRole': iamfleetrole,
             'LaunchSpecifications': [
                 {
                     'SecurityGroups': [
                         {
-                            'GroupId': 'sg-feffd18f',
+                            'GroupId': security_group,
                         }
                     ],
                     'InstanceType': instance_type,
@@ -106,17 +113,22 @@ def kill_screens(ips):
         execute_on(instance_ip, 'killall screen')
 
 
+def execute_on_all(ips, cmd):
+    # kill all screens in instances
+    for instance_ip in tqdm(ips):
+        execute_on(instance_ip, cmd)
+
+
 def start_dask(ips):
     # start the scheduler on first instance
     primary_ip = ips[0]
     execute_on(primary_ip, 'screen -dmS scheduler bash -c \"dask-scheduler\"')
     scheduler_addr = primary_ip + ":8786"
 
-
     # start workers pointing on the scheduler
-    for instance_ip in tqdm(ips):
+    for instance_ip in tqdm(ips[1:]):
         for i in range(workers_per_instance):
-            execute_on(instance_ip, 'screen -dmS w'+str(i)+' bash -c \"export PYTHONPATH=/home/ubuntu/scikit-optimize-benchmarks/:$PYTHONPATH && dask-worker ' + scheduler_addr + '\"')
+            execute_on(instance_ip, 'screen -dmS w'+str(i)+' bash -c \"dask-worker ' + scheduler_addr + '\"')
 
     return primary_ip
 
@@ -129,30 +141,45 @@ def terminate_cluster(cluster):
         TerminateInstances=True
     )
 
-if __name__ == "__main__":
-    import json
+def cl_make():
+    cluster = start_cluster_instances()
+    json.dump(cluster, open('cluster.json', 'w'))
 
-    if False:
-        cluster = start_cluster_instances()
-        json.dump(cluster, open('cluster.json', 'w'))
+def cl_reset():
+    cluster = json.load(open('cluster.json'))
+    pprint(cluster)
+
+    pprint("Waiting for ips ... ")
+    ips = get_instance_ips(cluster)
+    pprint("Killing screens if any ... ")
+    pprint(" ")
+    kill_screens(ips)
+    pprint("Starting workers ... ")
+    primary_ip = start_dask(ips)
+    pprint("")
+    pprint("Starting mongos ... ")
+    execute_on_all(ips, 'sudo service mongod start')
+    pprint("Primary IP address:")
+    pprint(primary_ip)
+
+def cl_kill():
+    cluster = json.load(open('cluster.json'))
+    pprint(cluster)
+    terminate_cluster(cluster)
+
+def cl_exec(cmd):
 
     cluster = json.load(open('cluster.json'))
     pprint(cluster)
 
-    action = 't'
+    pprint("Waiting for ips ... ")
+    ips = get_instance_ips(cluster)
+    execute_on_all(ips, cmd)
 
-    if action == 't':
-        terminate_cluster(cluster)
-    elif action == 'r':
-        pprint("Waiting for ips ... ")
-        ips = get_instance_ips(cluster)
-        pprint("Killing screens if any ... ")
-        pprint(" ")
-        kill_screens(ips)
-        pprint("Starting workers ... ")
-        primary_ip = start_dask(ips)
-        pprint("")
-        pprint("Primary IP address:")
-        pprint(primary_ip)
+if __name__ == "__main__":
+    pass
+    #cl_make()
+    #cl_reset()
+    cl_kill()
 
 

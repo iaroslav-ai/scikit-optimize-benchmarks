@@ -182,7 +182,8 @@ def cl_mtfs():
     pprint(cluster)
 
     ips = get_instance_ips(cluster)
-    execute_on_all(ips, "sudo sshfs -o IdentityFile=~/acc.pm root@163.172.183.101:/root/scikit-optimize-benchmarks ~/shared")
+    execute_on_all(ips, "sudo sshfs -o IdentityFile=~/acc.pm root@"+config['file_system_host']
+                   +":/root/scikit-optimize-benchmarks ~/shared")
 
 
 def cl_ip_main():

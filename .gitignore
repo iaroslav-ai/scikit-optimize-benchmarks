@@ -18,5 +18,5 @@ dist/
 
 # pycache 
 __pycache__/
-d/
+complete_results/
 bbob/cluster_management/*.json

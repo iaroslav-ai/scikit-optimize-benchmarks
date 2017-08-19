@@ -15,14 +15,17 @@ and many originate from literature and are based on [sigopt's evalset](https://g
 
 ## Aggregated results
 
+Results below are for `n_calls=64`:
+
 |Method|Average rank (less is better)|
 |------|------------|
-dummy_minimize | 3.931
-forest_minimize | 2.172
-gbrt_minimize | 1.966
-gp_minimize | 1.138
-gpyopt_minimize | 0.897
-hyperopt_minimize | 2.845
+dummy_minimize | 4.552
+forest_minimize | 2.362
+gbrt_minimize | 2.172
+gp_minimize | 1.241
+gpyopt_minimize | 1.069
+hyperopt_minimize | 3.052
+smac_minimize | 3.431
 
 Important note: these results need not generalize to the problems which
 are largely different from problems in the evaluation set.

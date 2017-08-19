@@ -27,16 +27,12 @@ import time
 from tqdm import tqdm
 import joblib
 import json
+import argparse
 
+target_capacity = 20
+instance_type = 'c3.large'
 
-target_capacity = 32
-instance_type = 'm3.medium'
-aws_access_key = ''
-aws_key_name = ''
-# Ubuntu 16 based AMI, with all dependencies and dask[complete]
-ami_image_id = 'ami-639d701b'
-security_group = 'sg-3e004744'
-iamfleetrole = 'arn:aws:iam::495447293919:role/aws-ec2-spot-fleet-tagging-role'
+config = json.load(open('config.json', 'r'))
 
 recommended_worker_num = {
     'c3.large': 2,
@@ -58,18 +54,18 @@ def start_cluster_instances():
     cluster = client.request_spot_fleet(
         SpotFleetRequestConfig={
             'AllocationStrategy': 'lowestPrice',
-            'IamFleetRole': iamfleetrole,
+            'IamFleetRole': config['iamfleetrole'],
             'LaunchSpecifications': [
                 {
                     'SecurityGroups': [
                         {
-                            'GroupId': security_group,
+                            'GroupId': config['security_group'],
                         }
                     ],
                     'InstanceType': instance_type,
                     'SpotPrice': '0.1',
-                    'ImageId': ami_image_id,
-                    'KeyName': aws_key_name,
+                    'ImageId': config['ami_image_id'],
+                    'KeyName': config['aws_key_name'],
                 }
             ],
             'SpotPrice': '0.4',
@@ -83,7 +79,7 @@ def start_cluster_instances():
 
 
 def execute_on(ip, cmd):
-    cmd = "ssh -oStrictHostKeyChecking=no -i '" + aws_access_key + "' ubuntu@" + ip + " '" + cmd + "'"
+    cmd = "ssh -oStrictHostKeyChecking=no -i '" + config['aws_access_key'] + "' ubuntu@" + ip + " '" + cmd + "'"
     os.system(cmd)
 
 
@@ -141,9 +137,11 @@ def terminate_cluster(cluster):
         TerminateInstances=True
     )
 
+
 def cl_make():
     cluster = start_cluster_instances()
     json.dump(cluster, open('cluster.json', 'w'))
+
 
 def cl_reset():
     cluster = json.load(open('cluster.json'))
@@ -162,11 +160,13 @@ def cl_reset():
     pprint("Primary IP address:")
     pprint(primary_ip)
 
+
 def cl_kill():
     cluster = json.load(open('cluster.json'))
     pprint(cluster)
     terminate_cluster(cluster)
 
+# 'screen -dmS exec sudo bash -c "cd ~/shared && bash run_inf.sh"'
 def cl_exec(cmd):
 
     cluster = json.load(open('cluster.json'))
@@ -176,10 +176,55 @@ def cl_exec(cmd):
     ips = get_instance_ips(cluster)
     execute_on_all(ips, cmd)
 
+
+def cl_mtfs():
+    cluster = json.load(open('cluster.json'))
+    pprint(cluster)
+
+    ips = get_instance_ips(cluster)
+    execute_on_all(ips, "sudo sshfs -o IdentityFile=~/acc.pm root@163.172.183.101:/root/scikit-optimize-benchmarks ~/shared")
+
+
+def cl_ip_main():
+    cluster = json.load(open('cluster.json'))
+    pprint(cluster)
+
+    ips = get_instance_ips(cluster)
+    print(ips[0])
+
+
 if __name__ == "__main__":
-    pass
-    #cl_make()
-    #cl_reset()
-    cl_kill()
+    parser = argparse.ArgumentParser()
 
+    parser.add_argument(
+        '--kill', action='store_true', help="Destroy the current cluster.")
+    parser.add_argument(
+        '--make', action='store_true', help="Spawn a cluster.")
+    parser.add_argument(
+        '--reset', action='store_true', help="Reset the dask connections on cluster.")
+    parser.add_argument(
+        '--mtfs', action='store_true', help="Mount remote file system on cluster.")
+    parser.add_argument(
+        '--main', action='store_true', help="Show the IP of Dask scheduler for the cluster.")
+    parser.add_argument(
+        '--xec', nargs="?", default=None, type=str, help="Command to execute on every node of cluster.")
 
+    args = parser.parse_args()
+
+    if args.kill:
+        cl_kill()
+
+    if args.make:
+        cl_make()
+
+    if args.reset:
+        cl_reset()
+
+    if args.mtfs:
+        cl_mtfs()
+
+    if args.main:
+        cl_mtfs()
+
+    if args.xec:
+        cl_exec(args.xec)

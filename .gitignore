@@ -19,3 +19,4 @@ dist/
 # pycache 
 __pycache__/
 d/
+bbob/cluster_management/*.json

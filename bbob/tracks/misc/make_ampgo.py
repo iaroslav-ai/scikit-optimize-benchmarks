@@ -5,6 +5,7 @@ header = """from evalset.icml2016_tests import tests_for_nonparametric
 from evalset import test_funcs
 from skopt.space import Real, Integer
 import numpy as np
+import math
 
 """
 
@@ -43,7 +44,10 @@ for test in tests_for_nonparametric:
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 

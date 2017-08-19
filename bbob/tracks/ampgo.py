@@ -2,7 +2,7 @@ from evalset.icml2016_tests import tests_for_nonparametric
 from evalset import test_funcs
 from skopt.space import Real, Integer
 import numpy as np
-
+import math
 
 class Ackley_11_r(test_funcs.Ackley):
     def __init__(self):
@@ -14,7 +14,10 @@ class Ackley_11_r(test_funcs.Ackley):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -23,7 +26,7 @@ class Ackley_11_r(test_funcs.Ackley):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Ackley_3_1_r(test_funcs.Ackley):
     def __init__(self):
@@ -35,7 +38,10 @@ class Ackley_3_1_r(test_funcs.Ackley):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -44,7 +50,7 @@ class Ackley_3_1_r(test_funcs.Ackley):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Adjiman_2_r(test_funcs.Adjiman):
     def __init__(self):
@@ -56,7 +62,10 @@ class Adjiman_2_r(test_funcs.Adjiman):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -65,7 +74,7 @@ class Adjiman_2_r(test_funcs.Adjiman):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Alpine02_2_ri(test_funcs.Alpine02):
     def __init__(self):
@@ -77,7 +86,10 @@ class Alpine02_2_ri(test_funcs.Alpine02):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -86,7 +98,7 @@ class Alpine02_2_ri(test_funcs.Alpine02):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class CarromTable_2_ri(test_funcs.CarromTable):
     def __init__(self):
@@ -98,7 +110,10 @@ class CarromTable_2_ri(test_funcs.CarromTable):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -107,7 +122,7 @@ class CarromTable_2_ri(test_funcs.CarromTable):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Csendes_2_r(test_funcs.Csendes):
     def __init__(self):
@@ -119,7 +134,10 @@ class Csendes_2_r(test_funcs.Csendes):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -128,7 +146,7 @@ class Csendes_2_r(test_funcs.Csendes):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class DeflectedCorrugatedSpring_4_r(test_funcs.DeflectedCorrugatedSpring):
     def __init__(self):
@@ -140,7 +158,10 @@ class DeflectedCorrugatedSpring_4_r(test_funcs.DeflectedCorrugatedSpring):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -149,7 +170,7 @@ class DeflectedCorrugatedSpring_4_r(test_funcs.DeflectedCorrugatedSpring):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class DeflectedCorrugatedSpring_7_r(test_funcs.DeflectedCorrugatedSpring):
     def __init__(self):
@@ -161,7 +182,10 @@ class DeflectedCorrugatedSpring_7_r(test_funcs.DeflectedCorrugatedSpring):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -170,7 +194,7 @@ class DeflectedCorrugatedSpring_7_r(test_funcs.DeflectedCorrugatedSpring):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Easom_2_r(test_funcs.Easom):
     def __init__(self):
@@ -182,7 +206,10 @@ class Easom_2_r(test_funcs.Easom):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -191,7 +218,7 @@ class Easom_2_r(test_funcs.Easom):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Easom_4_r(test_funcs.Easom):
     def __init__(self):
@@ -203,7 +230,10 @@ class Easom_4_r(test_funcs.Easom):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -212,7 +242,7 @@ class Easom_4_r(test_funcs.Easom):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Easom_5_r(test_funcs.Easom):
     def __init__(self):
@@ -224,7 +254,10 @@ class Easom_5_r(test_funcs.Easom):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -233,7 +266,7 @@ class Easom_5_r(test_funcs.Easom):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Hartmann3_3_ri(test_funcs.Hartmann3):
     def __init__(self):
@@ -245,7 +278,10 @@ class Hartmann3_3_ri(test_funcs.Hartmann3):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -254,7 +290,7 @@ class Hartmann3_3_ri(test_funcs.Hartmann3):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Hartmann6_6_10_r(test_funcs.Hartmann6):
     def __init__(self):
@@ -266,7 +302,10 @@ class Hartmann6_6_10_r(test_funcs.Hartmann6):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -275,7 +314,7 @@ class Hartmann6_6_10_r(test_funcs.Hartmann6):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class HelicalValley_3_r(test_funcs.HelicalValley):
     def __init__(self):
@@ -287,7 +326,10 @@ class HelicalValley_3_r(test_funcs.HelicalValley):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -296,7 +338,7 @@ class HelicalValley_3_r(test_funcs.HelicalValley):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class LennardJones6_6_r(test_funcs.LennardJones6):
     def __init__(self):
@@ -308,7 +350,10 @@ class LennardJones6_6_r(test_funcs.LennardJones6):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -317,7 +362,7 @@ class LennardJones6_6_r(test_funcs.LennardJones6):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt01_7_10_r(test_funcs.McCourt01):
     def __init__(self):
@@ -329,7 +374,10 @@ class McCourt01_7_10_r(test_funcs.McCourt01):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -338,7 +386,7 @@ class McCourt01_7_10_r(test_funcs.McCourt01):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt03_9_r(test_funcs.McCourt03):
     def __init__(self):
@@ -350,7 +398,10 @@ class McCourt03_9_r(test_funcs.McCourt03):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -359,7 +410,7 @@ class McCourt03_9_r(test_funcs.McCourt03):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt06_5_r(test_funcs.McCourt06):
     def __init__(self):
@@ -371,7 +422,10 @@ class McCourt06_5_r(test_funcs.McCourt06):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -380,7 +434,7 @@ class McCourt06_5_r(test_funcs.McCourt06):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt07_6_12_r(test_funcs.McCourt07):
     def __init__(self):
@@ -392,7 +446,10 @@ class McCourt07_6_12_r(test_funcs.McCourt07):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -401,7 +458,7 @@ class McCourt07_6_12_r(test_funcs.McCourt07):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt08_4_r(test_funcs.McCourt08):
     def __init__(self):
@@ -413,7 +470,10 @@ class McCourt08_4_r(test_funcs.McCourt08):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -422,7 +482,7 @@ class McCourt08_4_r(test_funcs.McCourt08):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt09_3_r(test_funcs.McCourt09):
     def __init__(self):
@@ -434,7 +494,10 @@ class McCourt09_3_r(test_funcs.McCourt09):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -443,7 +506,7 @@ class McCourt09_3_r(test_funcs.McCourt09):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt10_8_r(test_funcs.McCourt10):
     def __init__(self):
@@ -455,7 +518,10 @@ class McCourt10_8_r(test_funcs.McCourt10):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -464,7 +530,7 @@ class McCourt10_8_r(test_funcs.McCourt10):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt11_8_r(test_funcs.McCourt11):
     def __init__(self):
@@ -476,7 +542,10 @@ class McCourt11_8_r(test_funcs.McCourt11):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -485,7 +554,7 @@ class McCourt11_8_r(test_funcs.McCourt11):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt12_7_r(test_funcs.McCourt12):
     def __init__(self):
@@ -497,7 +566,10 @@ class McCourt12_7_r(test_funcs.McCourt12):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -506,7 +578,7 @@ class McCourt12_7_r(test_funcs.McCourt12):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt13_3_r(test_funcs.McCourt13):
     def __init__(self):
@@ -518,7 +590,10 @@ class McCourt13_3_r(test_funcs.McCourt13):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -527,7 +602,7 @@ class McCourt13_3_r(test_funcs.McCourt13):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt14_3_r(test_funcs.McCourt14):
     def __init__(self):
@@ -539,7 +614,10 @@ class McCourt14_3_r(test_funcs.McCourt14):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -548,7 +626,7 @@ class McCourt14_3_r(test_funcs.McCourt14):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt16_4_r(test_funcs.McCourt16):
     def __init__(self):
@@ -560,7 +638,10 @@ class McCourt16_4_r(test_funcs.McCourt16):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -569,7 +650,7 @@ class McCourt16_4_r(test_funcs.McCourt16):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt16_4_10_r(test_funcs.McCourt16):
     def __init__(self):
@@ -581,7 +662,10 @@ class McCourt16_4_10_r(test_funcs.McCourt16):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -590,7 +674,7 @@ class McCourt16_4_10_r(test_funcs.McCourt16):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt17_7_r(test_funcs.McCourt17):
     def __init__(self):
@@ -602,7 +686,10 @@ class McCourt17_7_r(test_funcs.McCourt17):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -611,7 +698,7 @@ class McCourt17_7_r(test_funcs.McCourt17):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt18_8_r(test_funcs.McCourt18):
     def __init__(self):
@@ -623,7 +710,10 @@ class McCourt18_8_r(test_funcs.McCourt18):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -632,7 +722,7 @@ class McCourt18_8_r(test_funcs.McCourt18):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt19_2_r(test_funcs.McCourt19):
     def __init__(self):
@@ -644,7 +734,10 @@ class McCourt19_2_r(test_funcs.McCourt19):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -653,7 +746,7 @@ class McCourt19_2_r(test_funcs.McCourt19):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt20_2_r(test_funcs.McCourt20):
     def __init__(self):
@@ -665,7 +758,10 @@ class McCourt20_2_r(test_funcs.McCourt20):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -674,7 +770,7 @@ class McCourt20_2_r(test_funcs.McCourt20):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt23_6_r(test_funcs.McCourt23):
     def __init__(self):
@@ -686,7 +782,10 @@ class McCourt23_6_r(test_funcs.McCourt23):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -695,7 +794,7 @@ class McCourt23_6_r(test_funcs.McCourt23):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt26_3_r(test_funcs.McCourt26):
     def __init__(self):
@@ -707,7 +806,10 @@ class McCourt26_3_r(test_funcs.McCourt26):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -716,7 +818,7 @@ class McCourt26_3_r(test_funcs.McCourt26):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class McCourt28_4_r(test_funcs.McCourt28):
     def __init__(self):
@@ -728,7 +830,10 @@ class McCourt28_4_r(test_funcs.McCourt28):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -737,7 +842,7 @@ class McCourt28_4_r(test_funcs.McCourt28):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Michalewicz_4_r(test_funcs.Michalewicz):
     def __init__(self):
@@ -749,7 +854,10 @@ class Michalewicz_4_r(test_funcs.Michalewicz):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -758,7 +866,7 @@ class Michalewicz_4_r(test_funcs.Michalewicz):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Michalewicz_4_20_r(test_funcs.Michalewicz):
     def __init__(self):
@@ -770,7 +878,10 @@ class Michalewicz_4_20_r(test_funcs.Michalewicz):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -779,7 +890,7 @@ class Michalewicz_4_20_r(test_funcs.Michalewicz):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Michalewicz_8_r(test_funcs.Michalewicz):
     def __init__(self):
@@ -791,7 +902,10 @@ class Michalewicz_8_r(test_funcs.Michalewicz):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -800,7 +914,7 @@ class Michalewicz_8_r(test_funcs.Michalewicz):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Mishra06_2_r(test_funcs.Mishra06):
     def __init__(self):
@@ -812,7 +926,10 @@ class Mishra06_2_r(test_funcs.Mishra06):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -821,7 +938,7 @@ class Mishra06_2_r(test_funcs.Mishra06):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Ned01_2_r(test_funcs.Ned01):
     def __init__(self):
@@ -833,7 +950,10 @@ class Ned01_2_r(test_funcs.Ned01):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -842,7 +962,7 @@ class Ned01_2_r(test_funcs.Ned01):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class OddSquare_2_r(test_funcs.OddSquare):
     def __init__(self):
@@ -854,7 +974,10 @@ class OddSquare_2_r(test_funcs.OddSquare):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -863,7 +986,7 @@ class OddSquare_2_r(test_funcs.OddSquare):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Parsopoulos_2_ri(test_funcs.Parsopoulos):
     def __init__(self):
@@ -875,7 +998,10 @@ class Parsopoulos_2_ri(test_funcs.Parsopoulos):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -884,7 +1010,7 @@ class Parsopoulos_2_ri(test_funcs.Parsopoulos):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Pinter_2_ri(test_funcs.Pinter):
     def __init__(self):
@@ -896,7 +1022,10 @@ class Pinter_2_ri(test_funcs.Pinter):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -905,7 +1034,7 @@ class Pinter_2_ri(test_funcs.Pinter):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Plateau_2_r(test_funcs.Plateau):
     def __init__(self):
@@ -917,7 +1046,10 @@ class Plateau_2_r(test_funcs.Plateau):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -926,7 +1058,7 @@ class Plateau_2_r(test_funcs.Plateau):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Problem03_1_r(test_funcs.Problem03):
     def __init__(self):
@@ -938,7 +1070,10 @@ class Problem03_1_r(test_funcs.Problem03):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -947,7 +1082,7 @@ class Problem03_1_r(test_funcs.Problem03):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class RosenbrockLog_11_r(test_funcs.RosenbrockLog):
     def __init__(self):
@@ -959,7 +1094,10 @@ class RosenbrockLog_11_r(test_funcs.RosenbrockLog):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -968,7 +1106,7 @@ class RosenbrockLog_11_r(test_funcs.RosenbrockLog):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Sargan_5_r(test_funcs.Sargan):
     def __init__(self):
@@ -980,7 +1118,10 @@ class Sargan_5_r(test_funcs.Sargan):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -989,7 +1130,7 @@ class Sargan_5_r(test_funcs.Sargan):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Sargan_2_ri(test_funcs.Sargan):
     def __init__(self):
@@ -1001,7 +1142,10 @@ class Sargan_2_ri(test_funcs.Sargan):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -1010,7 +1154,7 @@ class Sargan_2_ri(test_funcs.Sargan):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Schwefel20_2_r(test_funcs.Schwefel20):
     def __init__(self):
@@ -1022,7 +1166,10 @@ class Schwefel20_2_r(test_funcs.Schwefel20):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -1031,7 +1178,7 @@ class Schwefel20_2_r(test_funcs.Schwefel20):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Schwefel20_2_ri(test_funcs.Schwefel20):
     def __init__(self):
@@ -1043,7 +1190,10 @@ class Schwefel20_2_ri(test_funcs.Schwefel20):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -1052,7 +1202,7 @@ class Schwefel20_2_ri(test_funcs.Schwefel20):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Schwefel36_2_r(test_funcs.Schwefel36):
     def __init__(self):
@@ -1064,7 +1214,10 @@ class Schwefel36_2_r(test_funcs.Schwefel36):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -1073,7 +1226,7 @@ class Schwefel36_2_r(test_funcs.Schwefel36):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Shekel05_4_r(test_funcs.Shekel05):
     def __init__(self):
@@ -1085,7 +1238,10 @@ class Shekel05_4_r(test_funcs.Shekel05):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -1094,7 +1250,7 @@ class Shekel05_4_r(test_funcs.Shekel05):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Sphere_7_ri(test_funcs.Sphere):
     def __init__(self):
@@ -1106,7 +1262,10 @@ class Sphere_7_ri(test_funcs.Sphere):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -1115,7 +1274,7 @@ class Sphere_7_ri(test_funcs.Sphere):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class StyblinskiTang_5_r(test_funcs.StyblinskiTang):
     def __init__(self):
@@ -1127,7 +1286,10 @@ class StyblinskiTang_5_r(test_funcs.StyblinskiTang):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -1136,7 +1298,7 @@ class StyblinskiTang_5_r(test_funcs.StyblinskiTang):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Tripod_2_r(test_funcs.Tripod):
     def __init__(self):
@@ -1148,7 +1310,10 @@ class Tripod_2_r(test_funcs.Tripod):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -1157,7 +1322,7 @@ class Tripod_2_r(test_funcs.Tripod):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
+    
 
 class Xor_9_r(test_funcs.Xor):
     def __init__(self):
@@ -1169,7 +1334,10 @@ class Xor_9_r(test_funcs.Xor):
         self.space = []
         for i, b in enumerate(self.bounds):
             if i in integer_idx:
-                self.space.append(Integer(b[0], b[1]))
+                self.space.append(Integer(
+                    int(math.ceil(b[0])),
+                    int(math.floor(b[1]))
+                ))
             else:
                 self.space.append(Real(b[0], b[1]))
 
@@ -1178,14 +1346,5 @@ class Xor_9_r(test_funcs.Xor):
         if self.res is None:
             return self.do_evaluate(p)
         return np.floor(self.res * self.evaluate(p)) / self.res
-
-
-problems = [Ackley_11_r, Ackley_3_1_r, Adjiman_2_r, Alpine02_2_ri, CarromTable_2_ri, Csendes_2_r,
-            DeflectedCorrugatedSpring_4_r, DeflectedCorrugatedSpring_7_r, Easom_2_r, Easom_4_r, Easom_5_r,
-            Hartmann3_3_ri, Hartmann6_6_10_r, HelicalValley_3_r, LennardJones6_6_r, McCourt01_7_10_r, McCourt03_9_r,
-            McCourt06_5_r, McCourt07_6_12_r, McCourt08_4_r, McCourt09_3_r, McCourt10_8_r, McCourt11_8_r, McCourt12_7_r,
-            McCourt13_3_r, McCourt14_3_r, McCourt16_4_r, McCourt16_4_10_r, McCourt17_7_r, McCourt18_8_r, McCourt19_2_r,
-            McCourt20_2_r, McCourt23_6_r, McCourt26_3_r, McCourt28_4_r, Michalewicz_4_r, Michalewicz_4_20_r,
-            Michalewicz_8_r, Mishra06_2_r, Ned01_2_r, OddSquare_2_r, Parsopoulos_2_ri, Pinter_2_ri, Plateau_2_r,
-            Problem03_1_r, RosenbrockLog_11_r, Sargan_5_r, Sargan_2_ri, Schwefel20_2_r, Schwefel20_2_ri, Schwefel36_2_r,
-            Shekel05_4_r, Sphere_7_ri, StyblinskiTang_5_r, Tripod_2_r, Xor_9_r]
+    
+problems = [Ackley_11_r, Ackley_3_1_r, Adjiman_2_r, Alpine02_2_ri, CarromTable_2_ri, Csendes_2_r, DeflectedCorrugatedSpring_4_r, DeflectedCorrugatedSpring_7_r, Easom_2_r, Easom_4_r, Easom_5_r, Hartmann3_3_ri, Hartmann6_6_10_r, HelicalValley_3_r, LennardJones6_6_r, McCourt01_7_10_r, McCourt03_9_r, McCourt06_5_r, McCourt07_6_12_r, McCourt08_4_r, McCourt09_3_r, McCourt10_8_r, McCourt11_8_r, McCourt12_7_r, McCourt13_3_r, McCourt14_3_r, McCourt16_4_r, McCourt16_4_10_r, McCourt17_7_r, McCourt18_8_r, McCourt19_2_r, McCourt20_2_r, McCourt23_6_r, McCourt26_3_r, McCourt28_4_r, Michalewicz_4_r, Michalewicz_4_20_r, Michalewicz_8_r, Mishra06_2_r, Ned01_2_r, OddSquare_2_r, Parsopoulos_2_ri, Pinter_2_ri, Plateau_2_r, Problem03_1_r, RosenbrockLog_11_r, Sargan_5_r, Sargan_2_ri, Schwefel20_2_r, Schwefel20_2_ri, Schwefel36_2_r, Shekel05_4_r, Sphere_7_ri, StyblinskiTang_5_r, Tripod_2_r, Xor_9_r]

@@ -11,8 +11,8 @@ from tqdm import tqdm
 def single_rep_evaluate(solver, problem, n_calls=64, seed=0):
     np.random.seed(seed)
     fnc = problem()
+    #print(problem)
     res = solver(fnc, fnc.space, n_calls=n_calls)
-
     # below is used to reduce the size of the result
     res.models = None
     res.random_state = None

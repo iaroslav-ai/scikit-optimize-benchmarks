@@ -88,18 +88,20 @@ where 95% confidence interval is computed using bootstrapping method.
 
 On every test optimization problem algorithms are ranked based on their
 relative performance. A rank of some algorithm is a number of other
-algorithms that significantly (based on derived interval) improve over
-the algorithm. Consider example results below:
+algorithms that significantly (based on derived confidence intervals) i
+mprove over the algorithm. Consider example results below:
 
 | A | B | C | D |
 |---|---|---|---|
-3<4<5|0<1<2|-1<0<1|-4<-2<-1|
+3<4<5|0<1<2|-1<0<1|-5<-4<-3|
 
-Rank A = 3, B = 1, C = 1, D = 0. The rank for B and C is the same, as their
+Based on above results, ranks of algorithms are:
+A = 3, B = 1, C = 1, D = 0. 
+The rank for B and C is the same, as their
 confidence intervals overlap. A large number of repetitions is used
 to reduce the size of such intervals.
 
-Confidence intervals and large number of iterations is used because
+Confidence intervals and large number of repetitions is used because
 of empirical observation that results with small number of iterations
 often cannot be reproduced and hence are unreliable.
 

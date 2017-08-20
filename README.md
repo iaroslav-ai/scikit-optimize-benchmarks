@@ -84,7 +84,8 @@ Results can be found in `results_history` folder, in `.csv` file
 Every entry in such `csv` file corresponds to performance of some
 algorithm on some problem. Such entries consist of 3 values:
 lower confidence bound < mean < upper confidence bound,
-where 95% confidence interval is computed using bootstrapping method.
+where 95% confidence interval for the value of mean is
+computed using bootstrapping method.
 
 On every test optimization problem algorithms are ranked based on their
 relative performance. A rank of some algorithm is a number of other

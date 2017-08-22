@@ -4,12 +4,15 @@ from skopt import gp_minimize
 from bbob.wrappers.gpyopt_minimize import gpyopt_minimize
 from bbob.wrappers.hyperopt_minimize import hyperopt_minimize
 
+methods = [gp_minimize, gpyopt_minimize, hyperopt_minimize]
+
 if sys.version[0] == '3':
     from bbob.wrappers.smac_minimize import smac_minimize
-    methods = [gp_minimize, gpyopt_minimize, hyperopt_minimize, smac_minimize]
-else:
+    methods += [smac_minimize]
+
+if sys.version[0] == '2':
     from bbob.wrappers.spearmint_minimize import spearmint_minimize
-    methods = [gp_minimize, gpyopt_minimize, hyperopt_minimize, spearmint_minimize]
+    methods += [spearmint_minimize]
 
 from bbob.evaluation import parallel_evaluate, calculate_metrics
 from bbob.tracks import ampgo
@@ -17,7 +20,7 @@ from bbob.tracks import ampgo
 r = parallel_evaluate(
     solvers=methods,
     task_subset=[ampgo.Ackley_3_1_r],
-    n_reps=3,
+    n_reps=2,
     joblib_kwargs={
         'verbose': 10,
         'n_jobs': 1

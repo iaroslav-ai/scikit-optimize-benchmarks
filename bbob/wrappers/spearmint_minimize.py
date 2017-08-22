@@ -19,8 +19,7 @@ import contextlib
 import os
 import shutil
 import tempfile
-
-
+import sys
 
 def rnd_name():
     return ''.join([random.choice(ascii_letters) for i in range(20)])
@@ -104,9 +103,18 @@ def main(job_id, params):
 
     json.dump(cfg, open(os.path.join(exp_loc, 'config.json'), 'w'))
 
+    if sys.version[0] == '2':
+        python_executive = 'python'
+    elif sys.version[0] == '3':
+        python_executive = 'python3'
+    else:
+        raise EnvironmentError('Unsupported version of python: %s' % sys.version)
+
+    command = python_executive + " " + spearmint_home + " " + exp_loc
+
     # https://stackoverflow.com/questions/4789837
     proc = Popen(
-        ["python " + spearmint_home + " " + exp_loc],
+        [command],
         stdout=subprocess.PIPE,
         shell=True,
         preexec_fn=os.setsid

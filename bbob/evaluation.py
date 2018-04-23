@@ -108,7 +108,7 @@ def calculate_metrics(results):
                 if not p in stat_dict:
                     stat_dict[p] = {}
                 opts = np.array([result.fun for result in results[s][t][p]])
-                stats = bs.bootstrap(opts, stat_func=bs_stats.mean, num_iterations=1000000, iteration_batch_size=100000)
+                stats = bs.bootstrap(opts, stat_func=bs_stats.mean, num_iterations=1000000, iteration_batch_size=100000, num_threads=-1)
                 l, m, u = stats.lower_bound, stats.value, stats.upper_bound
                 stat_dict[p][s] = "%s<%s<%s" % tuple(round(v, 3) for v in (l, m, u))
 
